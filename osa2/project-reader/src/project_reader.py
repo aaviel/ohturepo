@@ -13,8 +13,12 @@ class ProjectReader:
 
         dict = toml.loads(content)
 
+        name = dict["tool"]["poetry"]["name"]
+        description = dict["tool"]["poetry"]["description"]
+        license = dict["tool"]["poetry"]["license"]
+        authors = dict["tool"]["poetry"]["authors"]
         mainDeps = (dict["tool"]["poetry"]["dependencies"])
         devDeps = (dict["tool"]["poetry"]["group"]["dev"]["dependencies"])
 
         # deserialisoi TOML-formaatissa oleva merkkijono ja muodosta Project-olio sen tietojen perusteella
-        return Project("Test name", "Test description", mainDeps, devDeps)
+        return Project(name, description, license, authors, mainDeps, devDeps)
